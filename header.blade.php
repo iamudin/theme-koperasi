@@ -47,25 +47,29 @@
                   <span>{{ data_get($menu, 'name') }}</span>
                   <i class="fa fa-chevron-down text-xs"></i>
                 </button>
-                <div class="hidden group-hover:block absolute left-0 top-full mt-2 w-72 rounded-2xl border border-slate-200 bg-white shadow-lg overflow-hidden dark:border-slate-800 dark:bg-slate-950">
-                  @foreach($sub1 as $submenu)
-                    @php $sub2 = data_get($submenu, 'sub'); @endphp
-                    @if(!empty($sub2))
-                      <div class="relative group/submenu">
-                        <a href="{{ data_get($submenu, 'url', '#') }}" class="flex items-center justify-between gap-3 px-4 py-3 text-sm text-slate-700 hover:bg-emerald-50 hover:text-emerald-800 dark:text-slate-200 dark:hover:bg-slate-900 dark:hover:text-emerald-300">
-                          <span>{{ data_get($submenu, 'name') }}</span>
-                          <i class="fa fa-chevron-right text-xs"></i>
-                        </a>
-                        <div class="hidden group-hover/submenu:block absolute left-full top-0 ml-2 w-72 rounded-2xl border border-slate-200 bg-white shadow-lg overflow-hidden dark:border-slate-800 dark:bg-slate-950">
-                          @foreach($sub2 as $submenu2)
-                            <a href="{{ data_get($submenu2, 'url', '#') }}" class="block px-4 py-3 text-sm text-slate-700 hover:bg-emerald-50 hover:text-emerald-800 dark:text-slate-200 dark:hover:bg-slate-900 dark:hover:text-emerald-300">{{ data_get($submenu2, 'name') }}</a>
-                          @endforeach
+                <div class="hidden group-hover:block absolute left-0 top-full pt-2 z-50">
+                  <div class="w-72 rounded-2xl border border-slate-200 bg-white shadow-lg overflow-visible dark:border-slate-800 dark:bg-slate-950">
+                    @foreach($sub1 as $submenu)
+                      @php $sub2 = data_get($submenu, 'sub'); @endphp
+                      @if(!empty($sub2))
+                        <div class="relative group/submenu">
+                          <a href="{{ data_get($submenu, 'url', '#') }}" class="flex items-center justify-between gap-3 px-4 py-3 text-sm text-slate-700 hover:bg-emerald-50 hover:text-emerald-800 dark:text-slate-200 dark:hover:bg-slate-900 dark:hover:text-emerald-300">
+                            <span>{{ data_get($submenu, 'name') }}</span>
+                            <i class="fa fa-chevron-right text-xs"></i>
+                          </a>
+                          <div class="hidden group-hover/submenu:block absolute left-full top-0 pl-0 z-50">
+                            <div class="w-72 rounded-2xl border border-slate-200 bg-white shadow-lg overflow-hidden dark:border-slate-800 dark:bg-slate-950">
+                              @foreach($sub2 as $submenu2)
+                                <a href="{{ data_get($submenu2, 'url', '#') }}" class="block px-4 py-3 text-sm text-slate-700 hover:bg-emerald-50 hover:text-emerald-800 dark:text-slate-200 dark:hover:bg-slate-900 dark:hover:text-emerald-300">{{ data_get($submenu2, 'name') }}</a>
+                              @endforeach
+                            </div>
+                          </div>
                         </div>
-                      </div>
-                    @else
-                      <a href="{{ data_get($submenu, 'url', '#') }}" class="block px-4 py-3 text-sm text-slate-700 hover:bg-emerald-50 hover:text-emerald-800 dark:text-slate-200 dark:hover:bg-slate-900 dark:hover:text-emerald-300">{{ data_get($submenu, 'name') }}</a>
-                    @endif
-                  @endforeach
+                      @else
+                        <a href="{{ data_get($submenu, 'url', '#') }}" class="block px-4 py-3 text-sm text-slate-700 hover:bg-emerald-50 hover:text-emerald-800 dark:text-slate-200 dark:hover:bg-slate-900 dark:hover:text-emerald-300">{{ data_get($submenu, 'name') }}</a>
+                      @endif
+                    @endforeach
+                  </div>
                 </div>
               </div>
             @else
