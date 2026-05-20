@@ -1,4 +1,7 @@
 <aside class="space-y-6">
+  @php
+    $bannerSidebar = get_banner('sidebar');
+  @endphp
   <div class="rounded-3xl bg-white p-5 shadow dark:bg-slate-900">
     <div class="text-sm font-semibold text-slate-900 dark:text-slate-100">Pencarian</div>
     <form action="{{ url('search') }}" method="post" class="mt-4 flex gap-2">
@@ -8,6 +11,38 @@
         <i class="fa fa-magnifying-glass"></i>
       </button>
     </form>
+  </div>
+
+  <div class="rounded-3xl bg-white shadow overflow-hidden dark:bg-slate-900">
+    @if(!empty($bannerSidebar?->link))
+      <a href="{{ $bannerSidebar->link }}" class="block">
+        <div class="aspect-[4/3] bg-slate-100 dark:bg-slate-800">
+          @if(!empty($bannerSidebar?->image))
+            <img src="{{ $bannerSidebar->image }}" alt="Banner" class="h-full w-full object-cover">
+          @else
+            <div class="h-full w-full flex items-center justify-center">
+              <div class="text-center px-6">
+                <div class="text-xs tracking-widest uppercase text-slate-500 dark:text-slate-400">Banner</div>
+                <div class="mt-2 text-sm font-bold text-slate-900 dark:text-slate-100">Info Penting</div>
+              </div>
+            </div>
+          @endif
+        </div>
+      </a>
+    @else
+      <div class="aspect-[4/3] bg-slate-100 dark:bg-slate-800">
+        @if(!empty($bannerSidebar?->image))
+          <img src="{{ $bannerSidebar->image }}" alt="Banner" class="h-full w-full object-cover">
+        @else
+          <div class="h-full w-full flex items-center justify-center">
+            <div class="text-center px-6">
+              <div class="text-xs tracking-widest uppercase text-slate-500 dark:text-slate-400">Banner</div>
+              <div class="mt-2 text-sm font-bold text-slate-900 dark:text-slate-100">Info Penting</div>
+            </div>
+          </div>
+        @endif
+      </div>
+    @endif
   </div>
 
   <div class="rounded-3xl bg-white p-5 shadow dark:bg-slate-900">

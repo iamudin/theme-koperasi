@@ -1,9 +1,19 @@
 @php
   $profil = query()->detail('profil');
+  $bannerHome = get_banner('home');
 @endphp
 
-<section class="bg-gradient-to-br from-slate-900 via-slate-800 to-emerald-900 text-white">
-  <div class="max-w-7xl mx-auto px-4 py-16 md:py-20">
+<section class="relative text-white">
+  @if(!empty($bannerHome?->image))
+    <div class="absolute inset-0 overflow-hidden">
+      <img src="{{ $bannerHome->image }}" alt="Background" class="h-full w-full object-cover scale-105">
+      <div class="absolute inset-0 bg-slate-950/60"></div>
+      <div class="absolute inset-0 bg-gradient-to-br from-slate-900/80 via-slate-900/60 to-emerald-900/50"></div>
+    </div>
+  @else
+    <div class="absolute inset-0 bg-gradient-to-br from-slate-900 via-slate-800 to-emerald-900"></div>
+  @endif
+  <div class="relative z-10 max-w-7xl mx-auto px-4 py-16 md:py-20">
     <div class="grid lg:grid-cols-2 gap-10 items-center">
       <div>
         <div class="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-xs text-slate-200">
@@ -54,6 +64,40 @@
         </div>
       </div>
     </div>
+  </div>
+</section>
+
+<section class="relative z-20 max-w-7xl mx-auto px-4 -mt-10 pb-6">
+  <div class="rounded-3xl overflow-hidden shadow border border-white/10 dark:border-slate-800">
+    @if(!empty($bannerHome?->link))
+      <a href="{{ $bannerHome->link }}" class="block">
+        <div class="aspect-[21/6] bg-gradient-to-r from-emerald-600 via-emerald-500 to-slate-900">
+          @if(!empty($bannerHome?->image))
+            <img src="{{ $bannerHome->image }}" alt="Banner" class="h-full w-full object-cover">
+          @else
+            <div class="h-full w-full flex items-center justify-center text-white/90">
+              <div class="text-center px-6">
+                <div class="text-xs tracking-widest uppercase text-white/70">Banner</div>
+                <div class="mt-2 text-xl md:text-2xl font-black">Informasi & Pengumuman</div>
+              </div>
+            </div>
+          @endif
+        </div>
+      </a>
+    @else
+      <div class="aspect-[21/6] bg-gradient-to-r from-emerald-600 via-emerald-500 to-slate-900">
+        @if(!empty($bannerHome?->image))
+          <img src="{{ $bannerHome->image }}" alt="Banner" class="h-full w-full object-cover">
+        @else
+          <div class="h-full w-full flex items-center justify-center text-white/90">
+            <div class="text-center px-6">
+              <div class="text-xs tracking-widest uppercase text-white/70">Banner</div>
+              <div class="mt-2 text-xl md:text-2xl font-black">Informasi & Pengumuman</div>
+            </div>
+          </div>
+        @endif
+      </div>
+    @endif
   </div>
 </section>
 
