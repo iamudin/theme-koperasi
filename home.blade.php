@@ -1,13 +1,14 @@
 @php
   $profil = query()->detail('page','tupoksi',true);
-  $bannersHome = get_banner('home', 10);
+  $bannersHome = get_banner('home', 5);
+  $bannerHeader = get_banner('header');
   $sambutan = query()->detail('sambutan',false,true);
 @endphp
 
 <section class="relative text-white">
-  @if(!empty($bannersHome) && count($bannersHome) > 0 && !empty($bannersHome[0]->image))
+  @if(!empty($bannerHeader) && count($bannerHeader) > 0 && !empty($bannerHeader->image))
     <div class="absolute inset-0 overflow-hidden">
-      <img src="{{ $bannersHome[0]->image }}" alt="Background" class="h-full w-full object-cover scale-105">
+      <img src="{{ $bannerHeader->image }}" alt="Background" class="h-full w-full object-cover scale-105">
       <div class="absolute inset-0 bg-slate-950/60"></div>
       <div class="absolute inset-0 bg-gradient-to-br from-slate-900/80 via-slate-900/60 to-emerald-900/50"></div>
     </div>
@@ -228,7 +229,7 @@
         </div>
         <div>
           <div class="text-sm text-slate-500 dark:text-slate-400">{{ $sambutan->field?->jabatan ?? 'Kepala Dinas' }}</div>
-          <div class="font-bold text-slate-900 dark:text-white">{{ $sambuatan->field?->nama ?? 'Nama Pimpinan' }}</div>
+          <div class="font-bold text-slate-900 dark:text-white">{{ $sambutan->field?->nama ?? 'Nama Pimpinan' }}</div>
         </div>
       </div>
     </div>
