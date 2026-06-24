@@ -45,9 +45,9 @@
         <div class="mt-4 grid grid-cols-2 gap-4">
           <div class="rounded-2xl bg-white/5 p-4">
             <div class="text-xs text-slate-300">Jam Layanan</div>
-            <div class="mt-1 font-bold">{{ get_option('jam_layanan') ?? 'Senin - Jumat, 08.00 - 16.00' }}</div>
+            <div class="mt-1 font-bold">{{ get_option('jam_kerja') ?? 'Senin - Jumat, 08.00 - 16.00' }}</div>
           </div>
-            <a href="https://sipendekar.bengkaliskab.go.id" class="rounded-2xl bg-white/5 p-4 hover:bg-white/10">
+            <a href="https://lapor.go.id" class="rounded-2xl bg-white/5 p-4 hover:bg-white/10">
             <div class="text-xs text-slate-300">Pengaduan</div>
             <div class="mt-1 font-bold">SP4N Lapor</div>
           </a>
