@@ -357,62 +357,7 @@
   </div>
 </section>
 
-<section class="max-w-7xl mx-auto px-4 py-12 pb-16">
-  <div id="kontak" class="rounded-3xl bg-slate-900 text-white p-8 md:p-10">
-    <div class="grid md:grid-cols-2 gap-8">
-      <div class="space-y-6">
-        <div>
-          <div class="text-sm text-slate-300">Kontak</div>
-          <h2 class="mt-1 text-2xl font-bold">{{ get_option('nama_organisasi') ?? 'Di' }}</h2>
-          <div class="mt-4 text-slate-200 leading-relaxed">Gunakan informasi di bawah ini untuk menghubungi kami</div>
-        </div>
-        <div class="space-y-3">
-          <div class="rounded-2xl bg-white/10 p-4">
-            <div class="text-xs text-slate-300">Alamat</div>
-            <div class="mt-1 font-semibold">{{ get_option('alamat') ?? '-' }}</div>
-          </div>
-          <div class="rounded-2xl bg-white/10 p-4">
-            <div class="text-xs text-slate-300">Email</div>
-            <div class="mt-1 font-semibold">{{ get_option('email') ?? '-' }}</div>
-          </div>
-          <div class="rounded-2xl bg-white/10 p-4">
-            <div class="text-xs text-slate-300">Telepon</div>
-            <div class="mt-1 font-semibold">{{ get_option('telepon') ?? '-' }}</div>
-          </div>
-        </div>
-      </div>
-      <div>
-        @php
-          $mapUrl = null;
-          if (get_option('latitude') && get_option('longitude')) {
-            $mapUrl = map_by_coordinate(get_option('longitude'), get_option('latitude'));
-          } elseif (get_option('link_peta')) {
-            $mapUrl = get_option('link_peta');
-          }
-        @endphp
-        @if($mapUrl)
-          <div class="rounded-2xl overflow-hidden aspect-[10/6] bg-slate-800">
-            <iframe
-              src="{{ $mapUrl }}"
-              class="w-full h-full"
-              style="border:0;"
-              allowfullscreen=""
-              loading="lazy"
-              referrerpolicy="no-referrer-when-downgrade"
-            ></iframe>
-          </div>
-        @else
-          <div class="rounded-2xl aspect-square bg-slate-800 flex items-center justify-center">
-            <div class="text-center px-6">
-              <i class="fa fa-map-marker-alt text-4xl text-slate-500 mb-3"></i>
-              <div class="text-sm text-slate-400">Peta lokasi belum tersedia</div>
-            </div>
-          </div>
-        @endif
-      </div>
-    </div>
-  </div>
-</section>
+
 
 <!-- Search Modal -->
 <div id="searchModal" class="fixed inset-0 z-[9999] bg-slate-950/80 backdrop-blur-sm hidden items-center justify-center p-4">
