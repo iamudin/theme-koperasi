@@ -6,7 +6,7 @@
 @endphp
 
 <section class="relative text-white">
-  @if(!empty($bannerHeader) && count($bannerHeader) > 0 && !empty($bannerHeader->image))
+  @if(!empty($bannerHeader) && !empty($bannerHeader->image))
     <div class="absolute inset-0 overflow-hidden">
       <img src="{{ $bannerHeader->image }}" alt="Background" class="h-full w-full object-cover scale-105">
       <div class="absolute inset-0 bg-slate-950/60"></div>
