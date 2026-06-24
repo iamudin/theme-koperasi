@@ -2,7 +2,7 @@
   <div class="grid lg:grid-cols-3 gap-8">
     <div class="lg:col-span-2">
       <div class="text-sm text-slate-500 dark:text-slate-400">{{ $module->title ?? '' }}</div>
-      <h1 class="mt-1 text-2xl font-bold text-slate-900 dark:text-slate-100">Daftar Konten</h1>
+      <h1 class="mt-1 text-2xl font-bold text-slate-900 dark:text-slate-100">Daftar {{ $module->title }}</h1>
 
       <div class="mt-6 grid sm:grid-cols-2 gap-6">
         @foreach($index as $row)

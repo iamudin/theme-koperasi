@@ -18,8 +18,8 @@
         {!! $detail->content !!}
       </div>
 
-      <div class="mt-6">
-        {{ share_button() }}
+      <div class="mt-6 flex"> Bagikan &nbsp;
+        {{ $detail->share_to}}
       </div>
     </article>
 

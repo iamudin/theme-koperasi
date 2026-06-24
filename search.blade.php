@@ -2,7 +2,7 @@
   <div class="grid lg:grid-cols-3 gap-8">
     <div class="lg:col-span-2">
       <div class="text-sm text-slate-500 dark:text-slate-400">Hasil Pencarian</div>
-      <h1 class="mt-1 text-2xl font-bold text-slate-900 dark:text-slate-100">{{ $keyword ?? '' }}</h1>
+      <h1 class="mt-1 text-2xl font-bold text-slate-900 dark:text-slate-100">"{{ $keyword ?? '' }}"</h1>
 
       <div class="mt-6 space-y-4">
         @forelse($index ?? [] as $row)

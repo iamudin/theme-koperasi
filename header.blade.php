@@ -1,9 +1,6 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>{{ get_option('nama') ?? 'Dinas Koperasi dan Usaha Kecil dan Menengah' }}</title>
   <script>
     tailwind = window.tailwind || {};
     tailwind.config = {
@@ -30,11 +27,7 @@
       @endphp
       <div class="h-16 flex items-center justify-between gap-6">
         <a href="{{ url('/') }}" class="flex items-center gap-3">
-          <img src="/logo.webp" alt="Logo" class="h-10 w-10 object-contain">
-          <div class="leading-tight">
-            <div class="text-xs text-slate-500 dark:text-slate-400">{{ get_option('kabupaten') ?? 'Kabupaten Bengkalis' }}</div>
-            <div class="text-sm font-bold">{{ get_option('nama') ?? 'Dinas Koperasi dan Usaha Kecil dan Menengah' }}</div>
-          </div>
+          <img src="/logo.webp" alt="Logo" class="h-12  object-contain">
         </a>
 
         <nav class="hidden md:flex items-center gap-5 text-sm">
@@ -134,7 +127,7 @@
               <a href="{{ data_get($m1, 'url', '#') }}" class="rounded-xl px-3 py-2 text-slate-700 hover:bg-slate-100 dark:text-slate-200 dark:hover:bg-slate-800">{{ data_get($m1, 'name') }}</a>
             @endif
           @endforeach
-          <a href="#kontak" class="rounded-xl px-3 py-2 text-slate-700 hover:bg-slate-100 dark:text-slate-200 dark:hover:bg-slate-800">Kontak</a>
+
           <a href="{{ url('search') }}" class="rounded-xl px-3 py-2 text-slate-700 hover:bg-slate-100 dark:text-slate-200 dark:hover:bg-slate-800">Pencarian</a>
         </div>
       </div>

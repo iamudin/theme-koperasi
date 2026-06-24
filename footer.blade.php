@@ -3,13 +3,13 @@
     <div class="grid md:grid-cols-3 gap-8">
       <div class="md:col-span-2">
         <div class="flex items-center gap-3">
-          <img src="/logo.webp" alt="Logo" class="h-10 w-10 object-contain">
+          <img src="/favicon.ico" alt="Logo" class="h-10 w-10 object-contain">
           <div>
-            <div class="text-sm font-bold">{{ get_option('nama') ?? 'Dinas Koperasi dan Usaha Kecil dan Menengah' }}</div>
-            <div class="text-xs text-slate-500 dark:text-slate-400">{{ get_option('kabupaten') ?? 'Kabupaten Bengkalis' }}</div>
+            <div class="text-sm font-bold">{{ get_option('nama') ?? 'Nama Instansi / Tim / Group' }}</div>
+            <div class="text-xs text-slate-500 dark:text-slate-400">JHDfhjdkfjhf {{ get_option('kabupaten') ?? 'Kabupaten Instansi' }}</div>
           </div>
         </div>
-        <div class="mt-4 text-sm text-slate-600 leading-relaxed dark:text-slate-300">{{ get_option('deskripsi') ?? 'Portal informasi, layanan, dan publikasi kegiatan Dinas Koperasi dan Usaha Kecil dan Menengah.' }}</div>
+        <div class="mt-4 text-sm text-slate-600 leading-relaxed dark:text-slate-300">{{ get_option('keterangan_organisasi') ?? 'Portal informasi, layanan, dan publikasi kegiatan Instansi' }}</div>
       </div>
 
       <div id="kontak">

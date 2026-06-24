@@ -1,4 +1,4 @@
-<aside class="space-y-6">
+<aside class="space-y-8 sticky top-[100px]">
   @php
     $bannerSidebar = get_banner('sidebar');
   @endphp
