@@ -46,7 +46,7 @@
   </div>
 
   <div class="rounded-3xl bg-white p-5 shadow dark:bg-slate-900">
-    <div class="text-sm font-semibold text-slate-900 dark:text-slate-100">Berita Terbaru</div>
+    <div class="text-sm font-semibold text-slate-900 dark:text-slate-100"> <i class="fa fa-rss"></i> Berita Terbaru</div>
     <div class="mt-4 space-y-4">
       @foreach(query()->index_limit('berita', 5) as $row)
         <a href="{{ $row->link }}" class="group flex gap-3">

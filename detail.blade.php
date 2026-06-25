@@ -4,7 +4,7 @@
       <h1 class="text-2xl md:text-3xl font-bold text-slate-900 dark:text-slate-100">{{ $detail->title ?? '' }}</h1>
       <div class="mt-2 text-sm text-slate-500 dark:text-slate-400">{{ $detail->created ?? '' }}</div>
 
-      @if(!empty($detail?->thumbnail))
+      @if(!empty($detail?->media))
         <img src="{{ $detail->thumbnail }}" alt="{{ $detail->title ?? '' }}" class="mt-6 w-full rounded-3xl object-cover bg-slate-100 dark:bg-slate-800">
       @endif
 
@@ -12,8 +12,8 @@
         {!! $detail->content ?? '' !!}
       </div>
 
-      <div class="mt-6">
-        {{ share_button() }}
+      <div class="mt-6 flex">
+        Bagikan : &nbsp;&nbsp; {{ share_button() }}
       </div>
     </article>
 

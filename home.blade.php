@@ -3,6 +3,7 @@
   $bannersHome = get_banner('home', 5);
   $bannerHeader = get_banner('header');
   $sambutan = query()->detail('sambutan',false,true);
+  $pengumumanTerbaru = query()->index_limit('pengumuman', 3) ?? query()->index_limit('berita', 3);
 @endphp
 
 <section class="relative text-white">
@@ -47,17 +48,32 @@
             <div class="text-xs text-slate-300">Jam Layanan</div>
             <div class="mt-1 font-bold">{{ get_option('jam_kerja') ?? 'Senin - Jumat, 08.00 - 16.00' }}</div>
           </div>
-            <a href="https://lapor.go.id" class="rounded-2xl bg-white/5 p-4 hover:bg-white/10">
-            <div class="text-xs text-slate-300">Pengaduan</div>
-            <div class="mt-1 font-bold">SP4N Lapor</div>
-          </a>
+            <div class="rounded-2xl bg-white/5 p-4 hover:bg-white/10">
+          <div class="mt-0" id="homeRealtimeClock">
+            <div class="text-md font-bold text-white" id="clockDate">-</div>
+            <div class="text-xl font-black text-emerald-300 mt-1" id="clockTime">-</div>
+          </div>
+</div>
      
         </div>
         <div class="mt-6 rounded-2xl border border-white/10 bg-slate-950/40 p-5">
-          <div class="text-xs text-slate-300">Tanggal & Waktu</div>
-          <div class="mt-2" id="homeRealtimeClock">
-            <div class="text-xl font-bold text-white" id="clockDate">-</div>
-            <div class="text-3xl font-black text-emerald-300 mt-1" id="clockTime">-</div>
+          <div class="text-xs text-slate-300 flex items-center gap-1">
+            <i class="fa fa-bullhorn text-emerald-300"></i>
+            Info Terbaru
+          </div>
+          <div class="mt-3 space-y-2">
+            @if($pengumumanTerbaru)
+              @foreach($pengumumanTerbaru as $pengumuman)
+                <a href="{{ $pengumuman->url }}" class="block text-sm text-slate-200 hover:text-emerald-300 transition">
+                  <div class="flex items-start gap-2">
+                    <i class="fa fa-circle text-emerald-400 text-[8px] mt-1.5"></i>
+                    <span class="line-clamp-1">{{ $pengumuman->title }}</span>
+                  </div>
+                </a>
+              @endforeach
+            @else
+              <div class="text-sm text-slate-400">Belum ada pengumuman.</div>
+            @endif
           </div>
         </div>
       </div>
@@ -86,7 +102,7 @@
     seconds = seconds < 10 ? '0' + seconds : seconds;
 
     document.getElementById('clockDate').textContent = `${dayName}, ${date} ${monthName} ${year}`;
-    document.getElementById('clockTime').textContent = `${hours}:${minutes}:${seconds}`;
+    document.getElementById('clockTime').textContent = `${hours}:${minutes}:${seconds} WIB`;
   }
 
   updateClock();
