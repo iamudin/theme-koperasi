@@ -1,21 +1,21 @@
 @php
-  $profil = query()->detail('page','tupoksi',true);
-  $bannersHome = get_banner('home', 5);
-  $bannerHeader = get_banner('header');
-  $sambutan = query()->detail('sambutan',false,true);
-  $pengumuman =  query()->index_limit('pengumuman', 3);
-  $pengumumanTerbaru = $pengumuman && $pengumuman->count() > 0 ? $pengumuman : query()->index_limit('berita', 3);
+$profil = query()->detail('page','tupoksi',true);
+$bannersHome = get_banner('home', 5);
+$bannerHeader = get_banner('header');
+$sambutan = query()->detail('sambutan',false,true);
+$pengumuman = query()->index_limit('pengumuman', 3);
+$pengumumanTerbaru = $pengumuman && $pengumuman->count() > 0 ? $pengumuman : query()->index_limit('berita', 3);
 @endphp
 
 <section class="relative text-white">
   @if(!empty($bannerHeader) && !empty($bannerHeader->image))
-    <div class="absolute inset-0 overflow-hidden">
-      <img src="{{ $bannerHeader->image }}" alt="Background" class="h-full w-full object-cover scale-105">
-      <div class="absolute inset-0 bg-slate-950/60"></div>
-      <div class="absolute inset-0 bg-gradient-to-br from-slate-900/80 via-slate-900/60 to-emerald-900/50"></div>
-    </div>
+  <div class="absolute inset-0 overflow-hidden">
+    <img src="{{ $bannerHeader->image }}" alt="Background" class="h-full w-full object-cover scale-105">
+    <div class="absolute inset-0 bg-slate-950/60"></div>
+    <div class="absolute inset-0 bg-gradient-to-br from-slate-900/80 via-slate-900/60 to-emerald-900/50"></div>
+  </div>
   @else
-    <div class="absolute inset-0 bg-gradient-to-br from-slate-900 via-slate-800 to-emerald-900"></div>
+  <div class="absolute inset-0 bg-gradient-to-br from-slate-900 via-slate-800 to-emerald-900"></div>
   @endif
   <div class="relative z-10 max-w-7xl mx-auto px-4 py-16 md:py-20">
     <div class="grid lg:grid-cols-2 gap-10 items-center">
@@ -49,13 +49,13 @@
             <div class="text-xs text-slate-300">Jam Layanan</div>
             <div class="mt-1 font-bold">{{ get_option('jam_kerja') ?? 'Senin - Jumat, 08.00 - 16.00' }}</div>
           </div>
-            <div class="rounded-2xl bg-white/5 p-4 hover:bg-white/10">
-          <div class="mt-0" id="homeRealtimeClock">
-            <div class="text-md font-bold text-white" id="clockDate">-</div>
-            <div class="text-xl font-black text-emerald-300 mt-1" id="clockTime">-</div>
+          <div class="rounded-2xl bg-white/5 p-4 hover:bg-white/10">
+            <div class="mt-0" id="homeRealtimeClock">
+              <div class="text-md font-bold text-white" id="clockDate">-</div>
+              <div class="text-xl font-black text-emerald-300 mt-1" id="clockTime">-</div>
+            </div>
           </div>
-</div>
-     
+
         </div>
         <div class="mt-6 rounded-2xl border border-white/10 bg-slate-950/40 p-5">
           <div class="text-xs text-slate-300 flex items-center gap-1">
@@ -64,16 +64,16 @@
           </div>
           <div class="mt-3 space-y-2">
             @if($pengumumanTerbaru)
-              @foreach($pengumumanTerbaru as $pengumuman)
-                <a href="{{ $pengumuman->url }}" class="block text-sm text-slate-200 hover:text-emerald-300 transition">
-                  <div class="flex items-start gap-2">
-                    <i class="fa fa-circle text-emerald-400 text-[8px] mt-1.5"></i>
-                    <span class="line-clamp-1">{{ $pengumuman->title }}</span>
-                  </div>
-                </a>
-              @endforeach
+            @foreach($pengumumanTerbaru as $pengumuman)
+            <a href="{{ $pengumuman->url }}" class="block text-sm text-slate-200 hover:text-emerald-300 transition">
+              <div class="flex items-start gap-2">
+                <i class="fa fa-circle text-emerald-400 text-[8px] mt-1.5"></i>
+                <span class="line-clamp-1">{{ $pengumuman->title }}</span>
+              </div>
+            </a>
+            @endforeach
             @else
-              <div class="text-sm text-slate-400">Belum ada pengumuman.</div>
+            <div class="text-sm text-slate-400">Belum ada pengumuman.</div>
             @endif
           </div>
         </div>
@@ -83,83 +83,83 @@
 </section>
 
 <script>
-(function() {
-  const days = ['Minggu', 'Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu'];
-  const months = ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'];
+  (function() {
+    const days = ['Minggu', 'Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu'];
+    const months = ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'];
 
-  function updateClock() {
-    const now = new Date();
-    const dayName = days[now.getDay()];
-    const date = now.getDate();
-    const monthName = months[now.getMonth()];
-    const year = now.getFullYear();
-    
-    let hours = now.getHours();
-    let minutes = now.getMinutes();
-    let seconds = now.getSeconds();
-    
-    hours = hours < 10 ? '0' + hours : hours;
-    minutes = minutes < 10 ? '0' + minutes : minutes;
-    seconds = seconds < 10 ? '0' + seconds : seconds;
+    function updateClock() {
+      const now = new Date();
+      const dayName = days[now.getDay()];
+      const date = now.getDate();
+      const monthName = months[now.getMonth()];
+      const year = now.getFullYear();
 
-    document.getElementById('clockDate').textContent = `${dayName}, ${date} ${monthName} ${year}`;
-    document.getElementById('clockTime').textContent = `${hours}:${minutes}:${seconds} WIB`;
-  }
+      let hours = now.getHours();
+      let minutes = now.getMinutes();
+      let seconds = now.getSeconds();
 
-  updateClock();
-  setInterval(updateClock, 1000);
-})();
+      hours = hours < 10 ? '0' + hours : hours;
+      minutes = minutes < 10 ? '0' + minutes : minutes;
+      seconds = seconds < 10 ? '0' + seconds : seconds;
+
+      document.getElementById('clockDate').textContent = `${dayName}, ${date} ${monthName} ${year}`;
+      document.getElementById('clockTime').textContent = `${hours}:${minutes}:${seconds} WIB`;
+    }
+
+    updateClock();
+    setInterval(updateClock, 1000);
+  })();
 </script>
 
 <section class="relative z-20 max-w-7xl mx-auto px-4 -mt-10 pb-6">
   <div class="rounded-3xl overflow-hidden shadow border border-white/10 dark:border-slate-800 relative">
     <div id="homeBannerSlider" class="relative aspect-[16/7]">
       @if($bannersHome && count($bannersHome) > 0)
-        @foreach($bannersHome as $i => $banner)
-          <div class="banner-slide bg-gradient-to-r from-emerald-600 via-emerald-500 to-slate-900 absolute inset-0 opacity-0 transition-opacity duration-500 {{ $i === 0 ? 'opacity-100' : '' }}">
-            @if(!empty($banner->link))
-              <a href="{{ $banner->link }}" class="block h-full">
-            @endif
-                @if(!empty($banner->image))
-                  <img src="{{ $banner->image }}" alt="{{ $banner->name ?? 'Banner' }}" class="h-full w-full object-cover">
-                @else
-                  <div class="h-full w-full flex items-center justify-center text-white/90">
-                    <div class="text-center px-6">
-                      <div class="text-xs tracking-widest uppercase text-white/70">Banner</div>
-                      <div class="mt-2 text-xl md:text-2xl font-black">{{ $banner->name ?? 'Informasi & Pengumuman' }}</div>
-                    </div>
-                  </div>
-                @endif
-            @if(!empty($banner->link))
-              </a>
-            @endif
-          </div>
-        @endforeach
-      @else
-        <div class="banner-slide aspect-[16/9] bg-gradient-to-r from-emerald-600 via-emerald-500 to-slate-900">
+      @foreach($bannersHome as $i => $banner)
+      <div class="banner-slide bg-gradient-to-r from-emerald-600 via-emerald-500 to-slate-900 absolute inset-0 opacity-0 transition-opacity duration-500 {{ $i === 0 ? 'opacity-100' : '' }}">
+        @if(!empty($banner->link))
+        <a href="{{ $banner->link }}" class="block h-full">
+          @endif
+          @if(!empty($banner->image))
+          <img src="{{ $banner->image }}" alt="{{ $banner->name ?? 'Banner' }}" class="h-full w-full object-cover">
+          @else
           <div class="h-full w-full flex items-center justify-center text-white/90">
             <div class="text-center px-6">
               <div class="text-xs tracking-widest uppercase text-white/70">Banner</div>
-              <div class="mt-2 text-xl md:text-2xl font-black">Informasi & Pengumuman</div>
+              <div class="mt-2 text-xl md:text-2xl font-black">{{ $banner->name ?? 'Informasi & Pengumuman' }}</div>
             </div>
           </div>
+          @endif
+          @if(!empty($banner->link))
+        </a>
+        @endif
+      </div>
+      @endforeach
+      @else
+      <div class="banner-slide aspect-[16/9] bg-gradient-to-r from-emerald-600 via-emerald-500 to-slate-900">
+        <div class="h-full w-full flex items-center justify-center text-white/90">
+          <div class="text-center px-6">
+            <div class="text-xs tracking-widest uppercase text-white/70">Banner</div>
+            <div class="mt-2 text-xl md:text-2xl font-black">Informasi & Pengumuman</div>
+          </div>
         </div>
+      </div>
       @endif
     </div>
 
     @if($bannersHome && count($bannersHome) > 1)
-      <button id="prevBanner" class="absolute left-4 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-white/20 hover:bg-white flex items-center justify-center text-slate-800 shadow-lg transition hover:scale-110">
-        <i class="fa fa-chevron-left"></i>
-      </button>
-      <button id="nextBanner" class="absolute right-4 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-white/20 hover:bg-white flex items-center justify-center text-slate-800 shadow-lg transition hover:scale-110">
-        <i class="fa fa-chevron-right"></i>
-      </button>
+    <button id="prevBanner" class="absolute left-4 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-white/20 hover:bg-white flex items-center justify-center text-slate-800 shadow-lg transition hover:scale-110">
+      <i class="fa fa-chevron-left"></i>
+    </button>
+    <button id="nextBanner" class="absolute right-4 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-white/20 hover:bg-white flex items-center justify-center text-slate-800 shadow-lg transition hover:scale-110">
+      <i class="fa fa-chevron-right"></i>
+    </button>
 
-      <div class="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2">
-        @foreach($bannersHome as $i => $banner)
-          <button class="banner-dot w-2 h-2 rounded-full transition {{ $i === 0 ? 'bg-white' : 'bg-white/50' }} hover:bg-white" data-index="{{ $i }}"></button>
-        @endforeach
-      </div>
+    <div class="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2">
+      @foreach($bannersHome as $i => $banner)
+      <button class="banner-dot w-2 h-2 rounded-full transition {{ $i === 0 ? 'bg-white' : 'bg-white/50' }} hover:bg-white" data-index="{{ $i }}"></button>
+      @endforeach
+    </div>
     @endif
   </div>
 
@@ -258,7 +258,7 @@
             <div class="font-semibold text-slate-900 dark:text-slate-100">Daftar Layanan</div>
             <i class="fa fa-arrow-right text-slate-400 dark:text-slate-500"></i>
           </div>
-          <div class="mt-1 text-sm text-slate-600 dark:text-slate-300">Informasi layanan koperasi dan UMKM.</div>
+          <div class="mt-1 text-sm text-slate-600 dark:text-slate-300">Informasi layanan</div>
         </a>
         <a href="#berita" class="block rounded-2xl border border-slate-200 p-4 hover:bg-slate-50 dark:border-slate-800 dark:hover:bg-slate-800">
           <div class="flex items-center justify-between">
@@ -307,11 +307,11 @@
         </div>
       </div>
     </a>
-   @empty
-   <div class="rounded-3xl bg-white p-6 shadow dark:bg-slate-900">
-    <div class="text-2xl font-bold text-slate-900 dark:text-slate-100">Belum ada layanan.</div>
-   </div>
-   @endforelse
+    @empty
+    <div class="rounded-3xl bg-white p-6 shadow dark:bg-slate-900">
+      <div class="text-2xl font-bold text-slate-900 dark:text-slate-100">Belum ada layanan.</div>
+    </div>
+    @endforelse
   </div>
 </section>
 
@@ -327,18 +327,18 @@
   </div>
   <div class="mt-6 grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
     @forelse(query()->index_limit('berita', 3) as $row)
-      <a href="{{ $row->link }}" class="group rounded-3xl overflow-hidden bg-white shadow hover:shadow-lg transition dark:bg-slate-900">
-        <div class="aspect-[16/9] bg-slate-100 dark:bg-slate-800">
-          <img src="{{ $row->thumbnail }}" alt="{{ $row->title }}" class="h-full w-full object-cover">
-        </div>
-        <div class="p-5">
-          <div class="text-xs text-slate-500 dark:text-slate-400"> <i class="fa fa-clock"></i> {{ $row->created_at?->diffForHumans() ?? '' }} oleh {{ $row->user->name }}</div>
-          <div class="mt-1 font-bold text-slate-900 group-hover:text-emerald-700 line-clamp-2 dark:text-slate-100">{{ $row->title }}</div>
-          <div class="mt-2 text-sm text-slate-600 line-clamp-2 dark:text-slate-300">{{ $row->description }}</div>
-        </div>
-      </a>
+    <a href="{{ $row->link }}" class="group rounded-3xl overflow-hidden bg-white shadow hover:shadow-lg transition dark:bg-slate-900">
+      <div class="aspect-[16/9] bg-slate-100 dark:bg-slate-800">
+        <img src="{{ $row->thumbnail }}" alt="{{ $row->title }}" class="h-full w-full object-cover">
+      </div>
+      <div class="p-5">
+        <div class="text-xs text-slate-500 dark:text-slate-400"> <i class="fa fa-clock"></i> {{ $row->created_at?->diffForHumans() ?? '' }} oleh {{ $row->user->name }}</div>
+        <div class="mt-1 font-bold text-slate-900 group-hover:text-emerald-700 line-clamp-2 dark:text-slate-100">{{ $row->title }}</div>
+        <div class="mt-2 text-sm text-slate-600 line-clamp-2 dark:text-slate-300">{{ $row->description }}</div>
+      </div>
+    </a>
     @empty
-      <div class="rounded-3xl bg-white p-6 shadow text-slate-600 dark:bg-slate-900 dark:text-slate-300">Belum ada berita.</div>
+    <div class="rounded-3xl bg-white p-6 shadow text-slate-600 dark:bg-slate-900 dark:text-slate-300">Belum ada berita.</div>
     @endforelse
   </div>
 </section>
@@ -346,30 +346,30 @@
 <section id="galeri" class="max-w-7xl mx-auto px-4 py-12">
   <div class="flex items-end justify-between gap-6">
     <div>
-      <div class="text-sm text-slate-500 dark:text-slate-400">  <i class="fa fa-camera"></i> Dokumentasi</div>
+      <div class="text-sm text-slate-500 dark:text-slate-400"> <i class="fa fa-camera"></i> Dokumentasi</div>
       <h2 class="mt-1 text-2xl font-bold text-slate-900 dark:text-slate-100">Galeri Terbaru</h2>
     </div>
     <a href="{{ url('galeri') }}" class="text-sm font-semibold text-emerald-700 hover:text-emerald-800">Lihat Semua</a>
   </div>
   <div class="mt-6 grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
     @forelse(query()->index_limit('galeri', 3) as $row)
-      <a href="{{ $row->link }}" class="group rounded-3xl overflow-hidden shadow hover:shadow-lg transition block">
-        <div class="relative aspect-[4/3]">
-          <img src="{{ $row->thumbnail }}" alt="{{ $row->title }}" class="h-full w-full object-cover group-hover:scale-105 transition duration-300 bg-slate-100 dark:bg-slate-800">
-          <div class="absolute inset-0 bg-gradient-to-t from-slate-900/60 to-transparent"></div>
-          @if(!empty($row->data_field['link_video']))
-            <div class="absolute top-4 left-4 w-12 h-12 rounded-full bg-white/90 flex items-center justify-center shadow-lg">
-              <i class="fa fa-play text-emerald-600 text-xl ml-1"></i>
-            </div>
-          @endif
-          <div class="absolute bottom-0 left-0 right-0 p-6">
-            <div class="text-xs text-slate-200">{{ $row->created ?? '' }}</div>
-            <div class="text-lg font-bold text-white line-clamp-2">{{ $row->title }}</div>
-          </div>
+    <a href="{{ $row->link }}" class="group rounded-3xl overflow-hidden shadow hover:shadow-lg transition block">
+      <div class="relative aspect-[4/3]">
+        <img src="{{ $row->thumbnail }}" alt="{{ $row->title }}" class="h-full w-full object-cover group-hover:scale-105 transition duration-300 bg-slate-100 dark:bg-slate-800">
+        <div class="absolute inset-0 bg-gradient-to-t from-slate-900/60 to-transparent"></div>
+        @if(!empty($row->data_field['link_video']))
+        <div class="absolute top-4 left-4 w-12 h-12 rounded-full bg-white/90 flex items-center justify-center shadow-lg">
+          <i class="fa fa-play text-emerald-600 text-xl ml-1"></i>
         </div>
-      </a>
+        @endif
+        <div class="absolute bottom-0 left-0 right-0 p-6">
+          <div class="text-xs text-slate-200">{{ $row->created ?? '' }}</div>
+          <div class="text-lg font-bold text-white line-clamp-2">{{ $row->title }}</div>
+        </div>
+      </div>
+    </a>
     @empty
-      <div class="rounded-3xl bg-white p-6 shadow text-slate-600 dark:bg-slate-900 dark:text-slate-300">Belum ada galeri.</div>
+    <div class="rounded-3xl bg-white p-6 shadow text-slate-600 dark:bg-slate-900 dark:text-slate-300">Belum ada galeri.</div>
     @endforelse
   </div>
 </section>
