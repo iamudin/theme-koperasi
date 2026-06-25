@@ -3,7 +3,8 @@
   $bannersHome = get_banner('home', 5);
   $bannerHeader = get_banner('header');
   $sambutan = query()->detail('sambutan',false,true);
-  $pengumumanTerbaru = query()->index_limit('pengumuman', 3) ?? query()->index_limit('berita', 3);
+  $pengumuman =  query()->index_limit('pengumuman', 3);
+  $pengumumanTerbaru = $pengumuman && $pengumuman->count() > 0 ? $pengumuman : query()->index_limit('berita', 3);
 @endphp
 
 <section class="relative text-white">
