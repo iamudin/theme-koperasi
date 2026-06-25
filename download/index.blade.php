@@ -18,6 +18,9 @@
 
       <div class="mt-6 space-y-4">
         @foreach($index as $row)
+          @php
+            $fileMedia = $row->field?->file ? media($row->field?->file) : null;
+          @endphp
           <a href="{{ url($row->url) }}" class="group rounded-3xl bg-white p-5 shadow hover:shadow-lg transition block dark:bg-slate-900">
             <div class="flex gap-4 items-start">
               <div class="flex-shrink-0 h-16 w-16 rounded-2xl bg-gradient-to-br from-emerald-100 to-emerald-200 dark:from-emerald-900/50 dark:to-slate-800 flex items-center justify-center">
@@ -27,6 +30,22 @@
                 <div class="text-xs text-slate-500 dark:text-slate-400">{{ $row->created ?? '' }}</div>
                 <div class="mt-1 text-lg font-bold text-slate-900 group-hover:text-emerald-700 line-clamp-2 dark:text-slate-100">{{ $row->title }}</div>
                 <div class="mt-2 text-sm text-slate-600 line-clamp-2 dark:text-slate-300">{{ $row->short_content ?? $row->description }}</div>
+                @if($fileMedia)
+                <div class="mt-3 flex items-center gap-4 text-xs text-slate-500 dark:text-slate-400">
+                  <span class="flex items-center gap-1">
+                    <i class="fa fa-file-zipper text-emerald-600 dark:text-emerald-400"></i>
+                    {{ $fileMedia->extension() }}
+                  </span>
+                  <span class="flex items-center gap-1">
+                    <i class="fa fa-eye text-emerald-600 dark:text-emerald-400"></i>
+                    {{ $fileMedia->hits() }}
+                  </span>
+                  <span class="flex items-center gap-1">
+                    <i class="fa fa-weight text-emerald-600 dark:text-emerald-400"></i>
+                    {{ $fileMedia->size() }}
+                  </span>
+                </div>
+                @endif
               </div>
             </div>
           </a>
