@@ -1,4 +1,5 @@
 <?php
+
 use_module([
   'galeri' => true,
   'download' => ['web' => ['auto_query' => true]],
