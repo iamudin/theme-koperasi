@@ -255,7 +255,7 @@
         <div class="relative">
           <div
             class="h-20 w-20 rounded-full bg-gradient-to-br from-emerald-100 to-emerald-200 dark:from-emerald-900/50 dark:to-slate-800 overflow-hidden border-2 border-emerald-200 dark:border-emerald-800">
-            <img src="{{ $sambutan->thumbnail ?? noimage() }}" alt="Foto Pimpinan" class="h-full w-full object-cover">
+            <img src="{{ $sambutan->thumbnail ?? noimage() }}" alt="Foto Pimpinan" class="h-full w-full object-cover object-top">
           </div>
         </div>
         <div>
