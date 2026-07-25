@@ -7,5 +7,5 @@ use_module([
   'pengumuman' => true,
   'unit-kerja' => true,
   'sambutan' => true,
-  'layanan' => true
+  'layanan' => true,
 ]);
