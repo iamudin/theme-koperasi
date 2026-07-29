@@ -248,7 +248,7 @@
       <h2 class="text-2xl font-bold text-slate-900 dark:text-slate-100"> <i class="fa fa-hand"></i> Sambutan Pimpinan
       </h2>
       <div class="mt-4 text-slate-700 leading-relaxed dark:text-slate-200">
-        {!! str($sambutan->content ?? 'Selamat datang di website resmi kami')->limit(800) . '<a class="font-bold" href="' . url($sambutan->url ?? '/') . '">[ Selengkapnya ]</a>' ?? 'Selamat datang di website resmi kami' !!}
+        {!! str($sambutan->content ?? 'Selamat datang di website resmi kami')->limit(1000) . ' <a class="font-bold" href="' . url($sambutan->url ?? '/') . '">[Selengkapnya]</a>' ?? 'Selamat datang di website resmi kami' !!}
       </div>
       <div class="mt-6 flex items-center gap-4">
         <div class="relative">
