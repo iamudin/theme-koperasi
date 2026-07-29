@@ -434,7 +434,7 @@
   </div>
 
   <div id="kepegawaianSlider" class="mt-6 flex overflow-x-auto gap-4 lg:gap-6 snap-x snap-mandatory scroll-smooth [scrollbar-width:none] [&::-webkit-scrollbar]:hidden -mx-4 px-4 lg:mx-0 lg:px-0 py-4">
-    @forelse(query()->index('kepegawaian') as $row)
+    @forelse(query()->index_sort('kepegawaian', 'desc') as $row)
       <div class="snap-start snap-always shrink-0 w-[calc(50%-0.5rem)] md:w-[calc(33.333%-0.666rem)] lg:w-[calc(25%-1.125rem)]">
         <div class="group h-full relative rounded-[2rem] bg-white dark:bg-slate-900 p-2 shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07)] ring-1 ring-slate-100 hover:ring-emerald-200 hover:shadow-xl hover:-translate-y-1 transition-all duration-300 dark:ring-slate-800/80 dark:hover:ring-emerald-900/50 flex flex-col">
           <div class="aspect-[3/4] w-full overflow-hidden rounded-[1.5rem] bg-slate-100 dark:bg-slate-800 relative">
