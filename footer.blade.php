@@ -1,25 +1,95 @@
+
+
+
+
+<style>
+  /* Style khusus untuk Polling Form agar support Light & Dark Mode */
+  .polling-form {
+    margin-top: 1.5rem;
+    background-color: #f8fafc; /* bg-slate-50 */
+    border-radius: 1rem;
+    padding: 1.25rem;
+    border: 1px solid #f1f5f9; /* border-slate-100 */
+  }
+  html.dark .polling-form {
+    background-color: rgba(255,255,255,0.05);
+    border-color: rgba(255,255,255,0.1);
+  }
+  .polling-title {
+    font-size: 0.875rem;
+    font-weight: 700;
+    margin-bottom: 0.75rem;
+    color: #0f172a; /* text-slate-900 */
+  }
+  html.dark .polling-title {
+    color: #f8fafc;
+  }
+  .polling-body {
+    font-size: 0.875rem;
+    color: #475569; /* text-slate-600 */
+  }
+  html.dark .polling-body {
+    color: #cbd5e1;
+  }
+  .polling-footer {
+    margin-top: 1rem;
+  }
+  .btn-submit-polling {
+    background-color: #059669 !important;
+    color: white !important;
+    border: none !important;
+    padding: 0.5rem 1rem !important;
+    border-radius: 0.75rem !important;
+    font-size: 0.875rem !important;
+    font-weight: 600 !important;
+    transition: all 0.2s;
+    cursor: pointer;
+  }
+  .btn-submit-polling:hover {
+    background-color: #047857 !important;
+  }
+  html.dark .btn-submit-polling {
+    background-color: #10b981 !important;
+    color: #022c22 !important;
+  }
+  html.dark .btn-submit-polling:hover {
+    background-color: #34d399 !important;
+  }
+  .polling-body input[type="radio"] {
+    accent-color: #059669;
+    margin-right: 0.5rem;
+  }
+  html.dark .polling-body input[type="radio"] {
+    accent-color: #10b981;
+  }
+  .polling-body label {
+    display: inline-flex;
+    align-items: center;
+    margin-bottom: 0.5rem;
+    cursor: pointer;
+  }
+</style>
+
 <section class="max-w-7xl mx-auto px-4 py-12 pb-16">
-  <div id="kontak" class="rounded-3xl bg-slate-900 text-white p-8 md:p-10">
+  <div id="kontak" class="rounded-3xl bg-white shadow-xl shadow-slate-200/50 ring-1 ring-slate-100 text-slate-900 dark:bg-slate-900 dark:shadow-none dark:ring-slate-800 dark:text-white p-8 md:p-10 transition-colors duration-300">
     <div class="grid md:grid-cols-2 gap-8">
       <div class="space-y-6">
         <div>
-          <div class="text-sm text-slate-300">Kontak</div>
+          <div class="text-sm font-semibold text-emerald-600 dark:text-emerald-500">Kontak</div>
           <h2 class="mt-1 text-2xl font-bold">{{ get_option('nama_organisasi') ?? 'Di' }}</h2>
-          <div class="mt-4 text-slate-200 leading-relaxed">Gunakan informasi di bawah ini untuk menghubungi kami</div>
+          <div class="mt-4 text-slate-600 dark:text-slate-400 leading-relaxed">Gunakan informasi di bawah ini untuk menghubungi kami.</div>
         </div>
         <div class="space-y-3">
-          <div class="rounded-2xl bg-white/10 p-4">
-            <div class="text-xs text-slate-300">Alamat</div>
-            <div class="mt-1 font-semibold">{{ get_option('alamat') ?? '-' }}</div>
+          <div class="rounded-2xl bg-slate-50 border border-slate-100 dark:bg-white/5 dark:border-white/10 p-4">
+            <div class="text-sm text-slate-700 dark:text-slate-300"><span class="font-semibold text-slate-900 dark:text-white">Alamat :</span> {{ get_option('alamat') ?? '-' }}</div>
           </div>
-          <div class="rounded-2xl bg-white/10 p-4">
-            <div class="text-xs text-slate-300">Email</div>
-            <div class="mt-1 font-semibold">{{ get_option('email') ?? '-' }}</div>
+          <div class="rounded-2xl bg-slate-50 border border-slate-100 dark:bg-white/5 dark:border-white/10 p-4">
+            <div class="text-sm text-slate-700 dark:text-slate-300"><span class="font-semibold text-slate-900 dark:text-white">Email :</span> {{ get_option('email') ?? '-' }}</div>
           </div>
-          <div class="rounded-2xl bg-white/10 p-4">
-            <div class="text-xs text-slate-300">Telepon</div>
-            <div class="mt-1 font-semibold">{{ get_option('telepon') ?? '-' }}</div>
+          <div class="rounded-2xl bg-slate-50 border border-slate-100 dark:bg-white/5 dark:border-white/10 p-4">
+            <div class="text-sm text-slate-700 dark:text-slate-300"><span class="font-semibold text-slate-900 dark:text-white">Telepon :</span> {{ get_option('telepon') ?? '-' }}</div>
           </div>
+          {{ polling_form('penilaian_public') }}
         </div>
       </div>
       <div>

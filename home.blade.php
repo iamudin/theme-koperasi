@@ -479,7 +479,82 @@
     }
   });
 </script>
+@if(count($faq = query()->index_sort('faq')) > 0)
+<section id="faq" class="max-w-7xl mx-auto px-4 py-16">
+  <div class="text-center max-w-2xl mx-auto mb-12">
+    <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-indigo-50 text-indigo-600 dark:bg-indigo-900/30 dark:text-indigo-400 text-sm font-bold mb-4 tracking-wide">
+      <i class="fa fa-question-circle"></i> FAQ
+    </div>
+    <h2 class="text-3xl font-extrabold text-slate-900 dark:text-white tracking-tight">Sering Ditanyakan</h2>
+    <p class="mt-4 text-slate-600 dark:text-slate-400 text-base md:text-lg">Temukan jawaban untuk pertanyaan yang paling sering diajukan kepada kami.</p>
+  </div>
 
+  @php
+    $faqColors = [
+      [
+        'bg' => 'bg-emerald-50/50 dark:bg-emerald-900/10',
+        'border' => 'border-emerald-100 dark:border-emerald-800/30',
+        'open_bg' => 'open:bg-emerald-50 dark:open:bg-emerald-900/20',
+        'open_shadow' => 'open:shadow-emerald-500/5',
+        'icon_bg' => 'bg-emerald-100 dark:bg-emerald-800/50',
+        'icon_text' => 'text-emerald-600 dark:text-emerald-400',
+        'group_open_bg' => 'group-open:bg-emerald-500 dark:group-open:bg-emerald-500',
+        'border_t' => 'border-emerald-100 dark:border-emerald-800/30',
+      ],
+      [
+        'bg' => 'bg-blue-50/50 dark:bg-blue-900/10',
+        'border' => 'border-blue-100 dark:border-blue-800/30',
+        'open_bg' => 'open:bg-blue-50 dark:open:bg-blue-900/20',
+        'open_shadow' => 'open:shadow-blue-500/5',
+        'icon_bg' => 'bg-blue-100 dark:bg-blue-800/50',
+        'icon_text' => 'text-blue-600 dark:text-blue-400',
+        'group_open_bg' => 'group-open:bg-blue-500 dark:group-open:bg-blue-500',
+        'border_t' => 'border-blue-100 dark:border-blue-800/30',
+      ],
+      [
+        'bg' => 'bg-violet-50/50 dark:bg-violet-900/10',
+        'border' => 'border-violet-100 dark:border-violet-800/30',
+        'open_bg' => 'open:bg-violet-50 dark:open:bg-violet-900/20',
+        'open_shadow' => 'open:shadow-violet-500/5',
+        'icon_bg' => 'bg-violet-100 dark:bg-violet-800/50',
+        'icon_text' => 'text-violet-600 dark:text-violet-400',
+        'group_open_bg' => 'group-open:bg-violet-500 dark:group-open:bg-violet-500',
+        'border_t' => 'border-violet-100 dark:border-violet-800/30',
+      ],
+      [
+        'bg' => 'bg-rose-50/50 dark:bg-rose-900/10',
+        'border' => 'border-rose-100 dark:border-rose-800/30',
+        'open_bg' => 'open:bg-rose-50 dark:open:bg-rose-900/20',
+        'open_shadow' => 'open:shadow-rose-500/5',
+        'icon_bg' => 'bg-rose-100 dark:bg-rose-800/50',
+        'icon_text' => 'text-rose-600 dark:text-rose-400',
+        'group_open_bg' => 'group-open:bg-rose-500 dark:group-open:bg-rose-500',
+        'border_t' => 'border-rose-100 dark:border-rose-800/30',
+      ],
+    ];
+  @endphp
+  <div class="grid md:grid-cols-2 gap-6">
+    @forelse($faq as $row)
+      @php
+        $c = $faqColors[$loop->index % 4];
+      @endphp
+      <details class="group rounded-[2rem] {{ $c['bg'] }} border {{ $c['border'] }} overflow-hidden transition-all duration-300 {{ $c['open_bg'] }} open:shadow-xl {{ $c['open_shadow'] }} open:-translate-y-1">
+        <summary class="flex items-center justify-between cursor-pointer p-6 font-bold text-slate-800 dark:text-slate-200 select-none list-none [&::-webkit-details-marker]:hidden">
+          <span class="pr-4">{{ $row->title }}</span>
+          <span class="shrink-0 w-10 h-10 rounded-full {{ $c['icon_bg'] }} {{ $c['icon_text'] }} flex items-center justify-center transition-transform duration-300 group-open:rotate-180 {{ $c['group_open_bg'] }} group-open:text-white"><i class="fa fa-chevron-down text-sm"></i></span>
+        </summary>
+        <div class="px-6 pb-6 text-slate-600 dark:text-slate-400 leading-relaxed text-sm md:text-base border-t {{ $c['border_t'] }} pt-4 mt-2">
+          {!! $row->field?->jawaban ?? '-' !!}
+        </div>
+      </details>
+    @empty
+      <div class="col-span-full rounded-3xl bg-white p-8 shadow-sm ring-1 ring-slate-100 dark:bg-slate-900 dark:ring-slate-800 text-center">
+        <div class="text-lg font-medium text-slate-500 dark:text-slate-400">Belum ada FAQ.</div>
+      </div>
+    @endforelse
+  </div>
+</section>
+@endif
 <!-- Search Modal -->
 <div id="searchModal"
   class="fixed inset-0 z-[9999] bg-slate-950/80 backdrop-blur-sm hidden items-center justify-center p-4">
