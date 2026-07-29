@@ -1,7 +1,6 @@
 @php
   $bannerSidebars = get_banner('sidebar', 5);
 @endphp
-
 <div class="rounded-3xl bg-white shadow overflow-hidden dark:bg-slate-900 relative">
   @if($bannerSidebars && count($bannerSidebars) > 0)
     <div id="sidebarBannerSlider" class="flex overflow-x-auto snap-x snap-mandatory scroll-smooth [scrollbar-width:none] [&::-webkit-scrollbar]:hidden w-full">
