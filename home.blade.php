@@ -307,7 +307,7 @@
 <section id="layanan" class="max-w-7xl mx-auto px-4 py-12">
   <div class="flex flex-col lg:grid lg:grid-cols-[3fr_7fr] gap-8 items-start">
     <div class="w-full lg:sticky lg:top-[100px]">
-      @include('template.theme-koperasi.sidebar-banner')
+     {{get_element('sidebar-banner')}}
     </div>
 
     <div class="w-full">
