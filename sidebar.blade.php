@@ -16,11 +16,11 @@
   <div class="rounded-3xl bg-white shadow overflow-hidden dark:bg-slate-900">
     @if(!empty($bannerSidebar?->link))
       <a href="{{ $bannerSidebar->link }}" class="block">
-        <div class="aspect-[4/3] bg-slate-100 dark:bg-slate-800">
+        <div class="w-full bg-slate-100 dark:bg-slate-800">
           @if(!empty($bannerSidebar?->image))
-            <img src="{{ $bannerSidebar->image }}" alt="Banner" class="h-full w-full object-cover">
+            <img src="{{ $bannerSidebar->image }}" alt="Banner" class="w-full h-auto">
           @else
-            <div class="h-full w-full flex items-center justify-center">
+            <div class="aspect-[4/3] w-full flex items-center justify-center">
               <div class="text-center px-6">
                 <div class="text-xs tracking-widest uppercase text-slate-500 dark:text-slate-400">Banner</div>
                 <div class="mt-2 text-sm font-bold text-slate-900 dark:text-slate-100">Info Penting</div>
@@ -30,11 +30,11 @@
         </div>
       </a>
     @else
-      <div class="aspect-[4/3] bg-slate-100 dark:bg-slate-800">
+      <div class="w-full bg-slate-100 dark:bg-slate-800">
         @if(!empty($bannerSidebar?->image))
-          <img src="{{ $bannerSidebar->image }}" alt="Banner" class="h-full w-full object-cover">
+          <img src="{{ $bannerSidebar->image }}" alt="Banner" class="w-full h-auto">
         @else
-          <div class="h-full w-full flex items-center justify-center">
+          <div class="aspect-[4/3] w-full flex items-center justify-center">
             <div class="text-center px-6">
               <div class="text-xs tracking-widest uppercase text-slate-500 dark:text-slate-400">Banner</div>
               <div class="mt-2 text-sm font-bold text-slate-900 dark:text-slate-100">Info Penting</div>
