@@ -6,7 +6,6 @@
   $pengumuman = query()->index_limit('pengumuman', 3);
   $pengumumanTerbaru = $pengumuman && $pengumuman->count() > 0 ? $pengumuman : query()->index_limit('berita', 3);
 @endphp
-
 <section class="relative text-white">
   @if(!empty($bannerHeader) && !empty($bannerHeader->image))
     <div class="absolute inset-0 overflow-hidden">
@@ -342,7 +341,6 @@
 </section>
 
 
-
 <section id="berita" class="max-w-7xl mx-auto px-4 py-12">
   <div class="flex items-end justify-between gap-6">
     <div>
@@ -409,6 +407,70 @@
 </section>
 
 
+<section id="kepegawaian" class="max-w-7xl mx-auto px-4 py-12">
+  <div class="flex items-end justify-between gap-6">
+    <div>
+      <div class="text-sm font-medium text-emerald-600 dark:text-emerald-500 mb-1 flex items-center gap-2">
+        <span class="flex h-6 w-6 items-center justify-center rounded-md bg-emerald-50 text-emerald-600 dark:bg-emerald-900/30 dark:text-emerald-400">
+          <i class="fa fa-users text-[10px]"></i>
+        </span>
+        Kepegawaian
+      </div>
+      <h2 class="text-2xl font-bold text-slate-900 dark:text-slate-100 tracking-tight">Data Pegawai</h2>
+    </div>
+    <div class="flex items-center gap-4">
+      <div class="hidden sm:flex items-center gap-2 mr-2">
+        <button type="button" id="btnPrevKepegawaian" class="w-9 h-9 rounded-full bg-slate-100 hover:bg-emerald-100 text-slate-600 hover:text-emerald-700 flex items-center justify-center transition dark:bg-slate-800 dark:hover:bg-emerald-900/50 dark:text-slate-400 dark:hover:text-emerald-400 shadow-sm hover:shadow">
+          <i class="fa fa-chevron-left text-xs"></i>
+        </button>
+        <button type="button" id="btnNextKepegawaian" class="w-9 h-9 rounded-full bg-slate-100 hover:bg-emerald-100 text-slate-600 hover:text-emerald-700 flex items-center justify-center transition dark:bg-slate-800 dark:hover:bg-emerald-900/50 dark:text-slate-400 dark:hover:text-emerald-400 shadow-sm hover:shadow">
+          <i class="fa fa-chevron-right text-xs"></i>
+        </button>
+      </div>
+      <a href="{{ url('kepegawaian') }}" class="text-sm font-semibold text-emerald-700 hover:text-emerald-800 dark:text-emerald-500 dark:hover:text-emerald-400 flex items-center gap-1 group transition">
+        Lihat Semua <i class="fa fa-arrow-right text-xs group-hover:translate-x-1 transition-transform"></i>
+      </a>
+    </div>
+  </div>
+
+  <div id="kepegawaianSlider" class="mt-6 flex overflow-x-auto gap-4 lg:gap-6 snap-x snap-mandatory scroll-smooth [scrollbar-width:none] [&::-webkit-scrollbar]:hidden -mx-4 px-4 lg:mx-0 lg:px-0 py-4">
+    @forelse(query()->index('kepegawaian') as $row)
+      <div class="snap-start snap-always shrink-0 w-[calc(50%-0.5rem)] md:w-[calc(33.333%-0.666rem)] lg:w-[calc(25%-1.125rem)]">
+        <div class="group h-full relative rounded-[2rem] bg-white dark:bg-slate-900 p-2 shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07)] ring-1 ring-slate-100 hover:ring-emerald-200 hover:shadow-xl hover:-translate-y-1 transition-all duration-300 dark:ring-slate-800/80 dark:hover:ring-emerald-900/50 flex flex-col">
+          <div class="aspect-[3/4] w-full overflow-hidden rounded-[1.5rem] bg-slate-100 dark:bg-slate-800 relative">
+            <img src="{{ $row->thumbnail }}" alt="{{ $row->title }}" class="h-full w-full object-cover group-hover:scale-110 transition-transform duration-500">
+            <div class="absolute inset-0 bg-gradient-to-t from-slate-900/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+          </div>
+          <div class="p-4 text-center flex-1 flex flex-col justify-center">
+            <h3 class="font-bold text-slate-900 dark:text-slate-100 text-sm md:text-base line-clamp-1 group-hover:text-emerald-600 dark:group-hover:text-emerald-400 transition-colors">{{ $row->title }}</h3>
+            <p class="text-[11px] md:text-xs text-slate-500 dark:text-slate-400 mt-2 font-medium px-2.5 py-1 bg-slate-50 dark:bg-slate-800/50 rounded-lg inline-block mx-auto border border-slate-100 dark:border-slate-800">{{ $row->field?->jabatan ?? 'Pegawai' }}</p>
+          </div>
+        </div>
+      </div>
+    @empty
+      <div class="shrink-0 w-full lg:col-span-4 rounded-3xl bg-white p-8 shadow-sm ring-1 ring-slate-100 dark:bg-slate-900 dark:ring-slate-800 text-center">
+        <div class="text-lg font-medium text-slate-500 dark:text-slate-400">Belum ada data pegawai.</div>
+      </div>
+    @endforelse
+  </div>
+</section>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const slider = document.getElementById('kepegawaianSlider');
+    const btnPrev = document.getElementById('btnPrevKepegawaian');
+    const btnNext = document.getElementById('btnNextKepegawaian');
+
+    if (slider && btnPrev && btnNext) {
+      btnPrev.addEventListener('click', () => {
+        slider.scrollBy({ left: -slider.offsetWidth / 2, behavior: 'smooth' });
+      });
+      btnNext.addEventListener('click', () => {
+        slider.scrollBy({ left: slider.offsetWidth / 2, behavior: 'smooth' });
+      });
+    }
+  });
+</script>
 
 <!-- Search Modal -->
 <div id="searchModal"
